@@ -9,7 +9,7 @@
         android:layout_height="100dp"
         android:id="@+id/restaurantImageView"
         android:src="@drawable/app"
-        android:scaleType="centerCrop"/>s
+        android:scaleType="centerCrop"/>
 
     <LinearLayout
         android:orientation="vertical"
