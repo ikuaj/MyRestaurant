@@ -30,13 +30,12 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class RestaurantListActivity extends AppCompatActivity {
-    public static final String TAG = RestaurantListActivity.class.getSimpleName();
+//    private SharedPreferences mSharedPreferences;
+//    private String mRecentAddress;
+
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
+
     private RestaurantListAdapter mAdapter;
-
-    private SharedPreferences mSharedPreferences;
-    private String mRecentAddress;
-
     public List<Restaurant> mRestaurants = new ArrayList<>();
 
     @Override
@@ -45,11 +44,17 @@ public class RestaurantListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_restaurants);
         ButterKnife.bind(this);
 
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
-        if (mRecentAddress != null) {
-            getRestaurants(mRecentAddress);
-        }
+        Intent intent = getIntent();
+        String location = intent.getStringExtra("location");
+
+        getRestaurants(location);
+
+//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
+//
+//        if (mRecentAddress != null) {
+//            getRestaurants(mRecentAddress);
+//        }
     }
 
     private void getRestaurants(String location) {
